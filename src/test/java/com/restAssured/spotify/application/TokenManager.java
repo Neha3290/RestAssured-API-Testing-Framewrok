@@ -39,12 +39,12 @@ public class TokenManager {
 
         HashMap<String, String> formParams = new HashMap<String, String>();
         formParams.put("grant_type", "refresh_token");
-        formParams.put("client_id", ConfigLoader.getInstance().getInstanceClientId());
-        formParams.put("client_secret", ConfigLoader.getInstance().getInstanceClientSecret());
+        formParams.put("client_id", ConfigLoader.getInstance().getClientId());
+        formParams.put("client_secret", ConfigLoader.getInstance().getClientSecret());
         formParams.put("refresh_token", refreshToken);
 
         Response response = given().
-                baseUri(ConfigLoader.getInstance().getInstanceAccountBaseURI()).
+                baseUri(ConfigLoader.getInstance().getAccountBaseURI()).
                 contentType(ContentType.URLENC).
                 formParams(formParams).
                 when().

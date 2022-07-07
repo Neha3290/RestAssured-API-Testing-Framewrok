@@ -17,7 +17,7 @@ public class SpecBuilder {
     public static RequestSpecification getRequestSpec(){
 
         return new RequestSpecBuilder().
-                setBaseUri(ConfigLoader.getInstance().getInstanceBasePath()).
+                setBaseUri(ConfigLoader.getInstance().getBasePath()).
                 setBasePath("/v1").
                 addHeader("Authorization", "Bearer "+getToken()).
                 setContentType(ContentType.JSON).

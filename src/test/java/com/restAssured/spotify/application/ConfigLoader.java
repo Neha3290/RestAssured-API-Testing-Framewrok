@@ -20,47 +20,47 @@ public class ConfigLoader {
         return configLoader;
     }
 
-    public String getInstanceBasePath()
+    public String getBasePath()
     {
         String prop= properties.getProperty("BASE_PATH");
         if(prop!=null) return prop;
         else throw new RuntimeException("Property BASE_PATH is not defined in config.property file");
     }
 
-    public String getInstanceBaseUri()
+    public String getBaseUri()
     {
         String prop= properties.getProperty("BASE_URI");
         if(prop!=null) return prop;
         else throw new RuntimeException("Property BASE_URI is not defined in config.property file");
     }
 
-    public String getInstanceUserId()
+    public String getUserId()
     {
         String prop= properties.getProperty("USER_ID");
         if(prop!=null) return prop;
         else throw new RuntimeException("Property USER_ID is not defined in config.property file");
     }
-    public String getInstanceClientId()
+    public String getClientId()
     {
         String prop= properties.getProperty("CLIENT_ID");
         if(prop!=null) return prop;
         else throw new RuntimeException("Property CLIENT_ID is not defined in config.property file");
     }
 
-    public String getInstanceClientSecret()
+    public String getClientSecret()
     {
         String prop= properties.getProperty("CLIENT_SECRET");
         if(prop!=null) return prop;
         else throw new RuntimeException("Property CLIENT_SECRET is not defined in config.property file");
     }
 
-    public String getInstanceAccountBaseURI()
+    public String getAccountBaseURI()
     {
         String prop= properties.getProperty("ACCOUNT_BASE_URI");
         if(prop!=null) return prop;
         else throw new RuntimeException("Property ACCOUNT_BASE_URI is not defined in config.property file");
     }
-    public String getInstancetPlaylistId()
+    public String getPlaylistId()
     {
         String prop= properties.getProperty("PLAYLIST_ID");
         if(prop!=null) return prop;

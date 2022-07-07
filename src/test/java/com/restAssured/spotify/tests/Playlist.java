@@ -26,7 +26,7 @@ public class Playlist {
         PlaylistPojo responsePlaylist = given(getRequestSpec()).
                 body(requestPlaylist).
         when().
-                post("/users"+ConfigLoader.getInstance().getInstanceUserId()+"/playlists").
+                post("/users"+ConfigLoader.getInstance().getUserId()+"/playlists").
         then().spec(getResponseSpec()).
                 assertThat().
                 statusCode(201).
@@ -45,7 +45,7 @@ public class Playlist {
 
         PlaylistPojo responsePlaylist = given(getRequestSpec()).
         when().
-                get("/playlists"+ConfigLoader.getInstance().getInstancetPlaylistId()).
+                get("/playlists"+ConfigLoader.getInstance().getPlaylistId()).
         then().spec(getResponseSpec()).
                 assertThat().
                 statusCode(200).
@@ -87,7 +87,7 @@ public class Playlist {
        ErrorPojo responsePlaylist = given(getRequestSpec()).
                 body(requestPlaylist).
         when().
-                post("users"+ConfigLoader.getInstance().getInstanceUserId()+"/playlists").
+                post("users"+ConfigLoader.getInstance().getUserId()+"/playlists").
         then().spec(getResponseSpec()).
                 assertThat().
                 statusCode(400).
@@ -109,13 +109,13 @@ public class Playlist {
         requestPlaylist.setPublic(false);
 
         ErrorPojo responsePlaylist = given().
-                baseUri(ConfigLoader.getInstance().getInstanceBasePath()+ConfigLoader.getInstance().getInstanceBaseUri()).
+                baseUri(ConfigLoader.getInstance().getBasePath()+ConfigLoader.getInstance().getBaseUri()).
                 header("Authorization","Bearer BQDzq6Nhg71OIEOm5jqm4AVpEKLd-lHOEkePH0ydUckVKVmkA1MngmjDSwtRoA7TtUd2LW3ThPg1t1Ne-QklTpXqh7F-0CUBXHZ95GVt41e5CGYpqkjrpMOBKxey_O2sBD8mQOfuQu8u7iFvr8grkL841J92ERa28fC6lkXrlAX8ouAgr9IIuWQNpv9EMhYdloUHhiwisD7hsh_yMhFz5_J31YUDP5XJ_gmm-qNX61Y6aQFTsuwfBNPca15l6JaSbR99T1v_6aD1lRZE").
                 header("Content-Type","application/json").
                 body(requestPlaylist).
                 log().all().
                 when().
-                post("/users"+ConfigLoader.getInstance().getInstanceUserId()+"/playlists").
+                post("/users"+ConfigLoader.getInstance().getUserId()+"/playlists").
                 then().spec(getResponseSpec()).
                 extract().
                 response().
