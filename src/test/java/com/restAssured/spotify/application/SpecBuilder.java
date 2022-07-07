@@ -2,12 +2,14 @@ package com.restAssured.spotify.application;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.config.LogConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 import static com.restAssured.spotify.application.TokenManager.getToken;
+import static io.restassured.RestAssured.config;
 
 public class SpecBuilder {
 
@@ -21,6 +23,7 @@ public class SpecBuilder {
                 setBasePath("/v1").
                 addHeader("Authorization", "Bearer "+getToken()).
                 setContentType(ContentType.JSON).
+                setConfig(config.logConfig(LogConfig.logConfig().blacklistHeader("Authorization"))).
                 log(LogDetail.ALL).
                 build();
 
