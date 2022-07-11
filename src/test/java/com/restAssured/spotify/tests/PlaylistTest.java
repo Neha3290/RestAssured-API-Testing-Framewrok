@@ -4,6 +4,7 @@ package com.restAssured.spotify.tests;
 import com.restAssured.spotify.application.ConfigLoader;
 import com.restAssured.spotify.pojo.ErrorPojo;
 import com.restAssured.spotify.pojo.PlaylistPojo;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static com.restAssured.spotify.application.SpecBuilder.getRequestSpec;
@@ -12,10 +13,15 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@Epic("Spotify OAuth2.0")
+public class PlaylistTest {
 
-public class Playlist {
-
-    @Test
+    @Step
+    @Link("http://example.com")
+    @Link(name="example", value="myLink")
+    @Feature("Playlist Feature")
+    @Description("Should be create a new playlist")
+    @Test(description = "It should create a new playlist with valid data and valid credentials")
     public void shouldBeCreateANewPlaylist(){
 
         PlaylistPojo requestPlaylist = new PlaylistPojo();
@@ -40,7 +46,9 @@ public class Playlist {
 
     }
 
-    @Test
+    @Step
+    @Feature("Playlist Feature")
+    @Test(description = "It should get the details of a playlist by using playlistID")
     public void shouldGetAPlaylist(){
 
         PlaylistPojo responsePlaylist = given(getRequestSpec()).
@@ -52,14 +60,17 @@ public class Playlist {
                 extract().
                 response().
                 as(PlaylistPojo.class);
-        assertThat(responsePlaylist.getName(), equalTo("Updated Playlist Name"));
-        assertThat(responsePlaylist.getDescription(), equalTo("Updated playlist description"));
+        assertThat(responsePlaylist.getName(), equalTo("RestAssured Playlist1"));
+        assertThat(responsePlaylist.getDescription(), equalTo("New playlist description1"));
         assertThat(responsePlaylist.getPublic(), equalTo(false));
 
     }
 
-
-    @Test
+    @Step
+    @Issue("Issue-001")
+    @TmsLink("www.google.com")
+    @Feature("Playlist Feature")
+    @Test(description = "It should update playlist by using playlist ID")
     public void shouldUpdateThePlaylist(){
         PlaylistPojo requestPlaylist = new PlaylistPojo();
         requestPlaylist.setName("Updated RestAssured Playlist1");
@@ -76,8 +87,8 @@ public class Playlist {
 
     }
 
-
-    @Test
+    @Step
+    @Test(description = "It should not create a new playlist with blank name")
     public void shouldNotCreateAPlaylistWithoutName(){
         PlaylistPojo requestPlaylist = new PlaylistPojo();
         requestPlaylist.setName("");
@@ -100,8 +111,8 @@ public class Playlist {
 
     }
 
-
-    @Test
+    @Step
+    @Test(description = "It should give error of expired token")
     public void shouldNotCreateAPlaylistWitExpiredToken(){
         PlaylistPojo requestPlaylist = new PlaylistPojo();
         requestPlaylist.setName("Expired Token Playlist");
